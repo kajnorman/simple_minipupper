@@ -163,26 +163,34 @@ def main():
             current_leg[0]= state.joint_angles[0][0]
             current_leg[1]= state.joint_angles[1][0]
             #current_leg[2]= state.joint_angles[2][0]
-
-            #START  of the SEQENCER ##################
+         
+            
+         #START  of the SEQENCER ##################   KNN  ####################
             if start_time + 0 < now < start_time + 2:
                 print("command.trot_event = 0");
                 command.trot_event = 0;
             if start_time + 2 < now < start_time + 2 + config.dt:
                 print("command.trot_event = 1");
                 command.trot_event = 1;
-            if start_time + 2+ config.dt < now < start_time + 4 :
+            if start_time + 2 + config.dt < now < start_time + 4:
                 print("command.trot_event = 0");
                 command.trot_event = 0;
-            if start_time + 6 < now < start_time + 6 + config.dt:
+            if start_time + 4 < now < start_time + 8 :
+                print("command.yaw.rate =0.7");  #turning left
+                command.yaw_rate = 0.7;
+            if start_time + 8 < now < start_time + 12 :
+                print("command.yaw.rate =-0.7");  #turning right
+                command.yaw_rate = -0.7;
+            if start_time + 12< now < start_time + 12 + config.dt:
                 print("command.trot_event = 1");
                 command.trot_event = 1;
-            if start_time + 6 + config.dt < now:
+            if start_time + 12 + config.dt < now:
                 print("command.trot_event = 0");
                 command.trot_event = 0;
-            if start_time + 10 < now:
+            if start_time + 16 < now:
                 exit();
-
+          #END  of the SEQENCER ##################   KNN  ####################
+    
 
 try:
     main()
